@@ -1,0 +1,110 @@
+body {
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+        background-image: url(../img/background4.jpg);
+}
+
+/*Navbar*/
+
+.navigatie {
+    background-color: #0f9b49;
+    color: white !important;
+    float: left;
+}
+
+.whitetext {
+    color: white !important;
+}
+
+#logo {
+    position: absolute;
+    right: 0;
+    margin-right: 1vh;
+    top: 0;
+    margin-top: 1vh;
+}
+
+#title {
+    text-align: center !important;
+    align-content: center !important;
+    position: absolute;
+    /*    right: 40%;*/
+    left: 44%;
+    top: 0;
+    margin-top: 1vh;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-decoration: none;
+
+}
+
+@media screen and (min-width: 381px) {
+    #bannerdiv {
+        background-image: url(../img/banner-pizza2.png);
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #title {
+        left: 40%;
+    }
+
+    #banner {
+        width: 1300px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+    #title {
+        left: 37%;
+        font-size: 1.3em;
+    }
+
+    #banner {
+        width: 800px;
+    }
+
+    #bannerdiv {
+        background-image: url(../img/banner-pizza-mob.png);
+        background-repeat: no-repeat;
+    }
+}
+
+/*Einde navbar*/
+
+/*Begin midden*/
+
+#bannerdiv {
+    /*    background-image: url(../img/banner-pizza2.png);*/
+    height: 400px;
+    width: 1600px;
+    background-repeat: no-repeat;
+
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 0.59);
+    padding-top: 35px
+}
+
+/*einde midden*/
+
+/*Bestelpagina*/
+
+.contactinput {
+    margin-bottom: 10px;
+}
+
+#eerstepizza {
+    align-content: center !important;
+    vertical-align: middle !important;
+}
+
+
+h1, h2, h3, h4 {
+    font-family: "Oswald", sans-serif;
+}
+/*Einde Bestelpagina*/

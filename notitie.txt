@@ -1,0 +1,3 @@
+Query van database naar php.
+Database results moeten naar een array
+Array wordt met een FOR lus uit elkaar gehaald en 1 voor een geformat met divs etc.
