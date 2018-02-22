@@ -1,7 +1,7 @@
 body {
     background-color: #f4f4f4;
     overflow-x: hidden;
-        background-image: url(../img/background4.jpg);
+    background-image: url(../img/background3.png);
 }
 
 /*Navbar*/
@@ -40,10 +40,17 @@ body {
 }
 
 @media screen and (min-width: 381px) {
+/*
     #bannerdiv {
         background-image: url(../img/banner-pizza2.png);
         background-repeat: no-repeat;
+        max-width: 100%;
+        max-height: 100%;
+        background-size: cover;
+        width: 100%
+        
     }
+*/
 }
 
 @media screen and (max-width: 992px) {
@@ -51,9 +58,11 @@ body {
         left: 40%;
     }
 
+/*
     #banner {
         width: 1300px;
     }
+*/
 
 }
 
@@ -63,14 +72,18 @@ body {
         font-size: 1.3em;
     }
 
+/*
     #banner {
         width: 800px;
     }
+*/
 
+/*
     #bannerdiv {
         background-image: url(../img/banner-pizza-mob.png);
         background-repeat: no-repeat;
     }
+*/
 }
 
 /*Einde navbar*/

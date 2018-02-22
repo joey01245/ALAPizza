@@ -42,16 +42,14 @@
         </nav>
     </header>
 
-    <div id='bannerdiv'>
-<!--        <img id='banner' class='img' src="img/banner-pizza.png" width="100%" height="400px">-->
-    </div>
+        <img id='banner' class='img-fluid' src="img/banner-pizza.png" width="100%" height="400px">
 
     <main class="container border mt-4">
         <div class='row'>
             <div class='col-md-4 col-sm-6 kaas col-xs-12'>
                 <h4>Over ons</h4>
                 <img class='img-thumbnail rounded' src="img/steenoven.jpg">
-                <p>De pizzaketen Sopranos Pizza is ontstaan in 1995. Vanaf 1995 maken wij alde beste pizza's van de stad onze pizza's worden vers bereidt en gebakken in onze steenovens.</p>
+                <p>De pizzaketen Sopranos Pizza is ontstaan in 1995. Vanaf 1995 maken wij al de beste pizza's van de stad onze pizza's worden vers bereidt en gebakken in onze steenovens.</p>
             </div>
             
             <div class='col-md-4 col-sm-6 col-xs-12'>

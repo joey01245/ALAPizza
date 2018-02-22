@@ -1,3 +1,8 @@
 Query van database naar php.
 Database results moeten naar een array
 Array wordt met een FOR lus uit elkaar gehaald en 1 voor een geformat met divs etc.
+
+
+Hoe moet het gedaan worden met  de prijzen want de prijs die er standaard staat is alleen voor medium
+
+Database staan nu 12 pizza's en er moeten er maar 4 worden weergegeven.

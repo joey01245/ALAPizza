@@ -1,30 +1,7 @@
 <?php 
 require_once 'dbconfig.php';
 
-    try {
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $pdo->prepare("SELECT pizzaID, Naam, Grootte, Prijs FROM pizza LIMIT 1 "); 
-                $stmt->execute();
-
-                // set the resulting array to associative
-
-            while ($row = $stmt->fetch())
-              {
-
-                $id = $row['pizzaID'];
-                $naam = $row['Naam'];
-                $grootte = $row['Grootte'];            
-                $prijs = $row['Prijs'];
-//                $waterhoogte = $row['waterhoogte'];
-
-              }
-
-            }
-            catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-    unset($pdo);
-    $pdo = null;
+   
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,7 +48,7 @@ require_once 'dbconfig.php';
     </header>
 
     <div class='banner'>
-        <h2 class='pl-3 pt-2'>Pizza Bestellen</h2>
+        <h2 class='pl-3 pt-2 text-center'>Pizza Bestellen</h2>
         <hr>
     </div>
 
@@ -81,25 +58,71 @@ require_once 'dbconfig.php';
 
                 <div class='col-lg-4'>
                     <label class="lead">Gegevens:</label>
-                    <input type="text" class="form-control contactinput" placeholder="Naam">
-                    <input type="text" class="form-control contactinput" placeholder="Adres">
-                    <input type="text" class="form-control contactinput" placeholder="Woonplaats">
-                    <input type="text" class="form-control contactinput" placeholder="Postcode">
-                    <input type="text" class="form-control contactinput" placeholder="E-Mail">
-                    <input type="text" class="form-control contactinput" placeholder="Telefoonnummer">
+                    <input type="text" class="form-control contactinput" placeholder="Naam" required>
+                    <input type="text" class="form-control contactinput" placeholder="Adres" required>
+                    <input type="text" class="form-control contactinput" placeholder="Woonplaats" required>
+                    <input type="text" class="form-control contactinput" placeholder="Postcode" required>
+                    <input type="text" class="form-control contactinput" placeholder="E-Mail" required>
+                    <input type="text" class="form-control contactinput" placeholder="Telefoonnummer" required>
                 </div>
 
                 <div class='col-lg-12'>
                     <hr>
-                    <?php echo $id ?>
                 </div>
-
-
-
-
-                <div class='col-md-12 bestelknopdiv text-right mb-2'>
-                    <button class='btn btn-primary'>Bestel</button>
+                <div class='col-md-8'>
+                    <label class='lead'>Bestelling:</label>
                 </div>
+                <div class='col-lg-2'>
+                    <label class='lead'>Prijs:</label>
+                </div>
+                <div class='col-md-2'>
+                    <label class='lead'>Hoeveelheid:</label>
+                </div>
+                
+<?php
+         try {
+                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stmt = $pdo->prepare("SELECT Naam, Grootte, Prijs FROM pizza limit 1 "); 
+                        $stmt->execute();
+
+
+                    while(list($Naam, $Grootte, $Prijs) = $stmt->fetch(PDO::FETCH_NUM)) {
+                        echo "<div class='col-lg-12 mt-2'>$Naam</div>
+                        <div class='col-md-2'>
+                                <img class='pizzaplaatje' src='img/placeholder4.png' height='150px' width='150px'>
+                            </div>
+                                <div class='col-md-6'>
+                                   <span id='eerstepizza'>
+                                    <input type='radio' name='grootte' value='medium'> Medium<br>
+                                    <input type='radio' name='grootte' value='large'> Large<br>
+                                    <input type='radio' name='grootte' value='calzone'> Calzone<br>
+                                    </span>
+                                </div>
+                           <div class='col-md-2'>
+                            <label>&euro; $Prijs</label>
+                           </div>
+                           
+                           <div class='col-md-2 col-sm-3'>
+                            <input type='text' class='form-control' required placeholder='0'>
+                           </div>";
+                        }
+
+
+                    }
+                    catch(PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+            unset($pdo);
+            $pdo = null;
+?>
+
+                    <div class='col-md-12 text-right mb-2'>
+                        <label class='lead font-weight-bold mr-3'>Subtotaal:</label>
+                        <label id='subtotaal'>&euro; 0,00</label>
+                    </div>
+                    <div class='col-md-12 bestelknopdiv text-right mb-2'>
+                        <button class='btn btn-primary' type="submit">Bestel</button>
+                    </div>
 
             </div>
         </form>
