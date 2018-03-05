@@ -1,7 +1,28 @@
 <?php 
 require_once 'dbconfig.php';
 
-   
+function getVariantSelect($selname, $pid) {
+        global $pdo;
+                
+        $haalVarianten = "
+            SELECT id, pizzaid, soort, prijs 
+            FROM varianten WHERE pizzaid= :hetpizzaid";
+    
+//        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $pdo->prepare($haalVarianten);
+        $stmt->execute([":hetpizzaid" => $pid]);
+
+        $s = "<label>Soorten :</label><br><select id='$selname' name='$selname'>"
+            ."<option value=''>--Kies Soort--</option>";
+        while(list($id, $pizid, $soort, $prijs) = $stmt->fetch(PDO::FETCH_NUM)) {
+            $s .= "<option value='$id'>$soort, &euro; $prijs</option>";
+        }
+        $s .= "</select><br>";
+        $s .= "<div class='foutmelding' id='fout'></div>";
+        
+        return $s;
+    }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -69,62 +90,71 @@ require_once 'dbconfig.php';
                 <div class='col-lg-12'>
                     <hr>
                 </div>
+<!--
                 <div class='col-md-8'>
                     <label class='lead'>Bestelling:</label>
                 </div>
+-->
+<!--
                 <div class='col-lg-2'>
                     <label class='lead'>Prijs:</label>
                 </div>
                 <div class='col-md-2'>
                     <label class='lead'>Hoeveelheid:</label>
                 </div>
-                
+-->
+<!--                <div id='allepizzas'>-->
 <?php
-         try {
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stmt = $pdo->prepare("SELECT Naam, Grootte, Prijs FROM pizza limit 1 "); 
-                        $stmt->execute();
+                
+   
+                
+ try {
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $pdo->prepare("SELECT pizzaid, naam, image, prijs FROM pizzatest"); 
+                $stmt->execute();
+
+     $getoond = false;
+     
+            while(list($pizzaID, $naam, $image,  $prijs) = $stmt->fetch(PDO::FETCH_NUM)) {
+                echo "<div id='pizza$pizzaID align-content-center'>
+                <div class='col-lg-12 mt-2'>$naam</div>
+                <div class='col-md-10'>";
+                if(!$getoond){
+                    echo "<img class='pizzaplaatje' src='data:image/jpeg;base64,".base64_encode( $image )."' height='150px' width='150px'>";
+//                    $getoond = true;
+                }
+                  echo "</div>
+                        <div class='col-md-10'>";
+                        echo getVariantSelect('joeyszoeklijst', $pizzaID);
+                       echo "</div>";
+                        
+                    echo "<div class='col-md-9 col-sm-3'>
+                    <label class='mb-0'>Hoeveelheid:</label>
+                    <input type='text' class='form-control mt-1' name='$pizzaID' required placeholder='0'>
+                   </div> 
+                   </div>";
+                }
 
 
-                    while(list($Naam, $Grootte, $Prijs) = $stmt->fetch(PDO::FETCH_NUM)) {
-                        echo "<div class='col-lg-12 mt-2'>$Naam</div>
-                        <div class='col-md-2'>
-                                <img class='pizzaplaatje' src='img/placeholder4.png' height='150px' width='150px'>
-                            </div>
-                                <div class='col-md-6'>
-                                   <span id='eerstepizza'>
-                                    <input type='radio' name='grootte' value='medium'> Medium<br>
-                                    <input type='radio' name='grootte' value='large'> Large<br>
-                                    <input type='radio' name='grootte' value='calzone'> Calzone<br>
-                                    </span>
-                                </div>
-                           <div class='col-md-2'>
-                            <label>&euro; $Prijs</label>
-                           </div>
-                           
-                           <div class='col-md-2 col-sm-3'>
-                            <input type='text' class='form-control' required placeholder='0'>
-                           </div>";
-                        }
-
-
-                    }
-                    catch(PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
-            unset($pdo);
-            $pdo = null;
+            }
+            catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+                unset($pdo);
+                $pdo = null;
 ?>
-
+                </div>
+<!--
                     <div class='col-md-12 text-right mb-2'>
                         <label class='lead font-weight-bold mr-3'>Subtotaal:</label>
                         <label id='subtotaal'>&euro; 0,00</label>
                     </div>
-                    <div class='col-md-12 bestelknopdiv text-right mb-2'>
+-->
+                    <div class='col-md-12 bestelknopdiv text-right mb-2 mt-2'>
                         <button class='btn btn-primary' type="submit">Bestel</button>
                     </div>
 
-            </div>
+<!--            </div>-->
         </form>
 
     </main>

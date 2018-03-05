@@ -1,6 +1,6 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
+//class conntection {
+    
 define('DB_SERVER', 'joey01245.nl');
 define('DB_USERNAME', 'joeynl_wp2');
 define('DB_PASSWORD', 'joey012451');
@@ -14,4 +14,6 @@ try{
 } catch(PDOException $e){
     die("ERROR: Could not connect. " . $e->getMessage());
 }
+    
+//}
 ?>

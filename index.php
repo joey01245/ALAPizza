@@ -1,3 +1,8 @@
+<?php
+    require_once('joeypdo_class.php');
+
+    $db = new JoeyPDO('wamp');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -54,13 +59,14 @@
             
             <div class='col-md-4 col-sm-6 col-xs-12'>
                 <h4>Pizza van de dag</h4>
-                <h6>De pizza van de dag is:</h6>
+                <h6 class='text-center'>De pizza van de dag is:</h6>
+                <?php echo $db->getRandomPizza()?>
             </div>
 
             <div class='col-md-4 col-sm-6 col-xs-12'>
                 <h4>Korting</h4>
                 <img src="img/pizza%20vegetariano.jpg" class='img-thumbnail rounded'>
-                <p>Wij willen onze klanten graag wat meer geven dan alleen pizza dus daarom hebben we bij iedere 2e pizza die de klant besteld 50% korting. </p>
+                <p>Wij willen onze klanten graag wat meer geven dan alleen pizza dus daarom geven we bij iedere 2e pizza die de klant besteld 50% korting. </p>
             </div>
             
             <div class='col-md-4 col-sm-6 col-xs-12 mx-auto'>
