@@ -41,14 +41,14 @@ class JoeyPDO {
     //
     public function getAllPizzas() {
         $stmt = $this->conn->prepare("SELECT PizzaID, Naam, Prijs
-            FROM pizzatest");
+            FROM pizza");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getPizzaById($id) {
         $stmt = $this->conn->prepare("SELECT PizzaID, Naam, Prijs
-            FROM pizzatest WHERE PizzaID = :id");
+            FROM pizza WHERE PizzaID = :id");
         $stmt->execute([":id" => $id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
@@ -56,7 +56,7 @@ class JoeyPDO {
     public function getPizzaByNamepart($namepart) {
         $search = "%$namepart%";
         $stmt = $this->conn->prepare("SELECT PizzaID, Naam, Prijs
-            FROM pizzatest WHERE Naam LIKE ?");
+            FROM pizza WHERE Naam LIKE ?");
         $stmt->execute([$search]);
         return $stmt->fetchAll($this->MODE);
     }
@@ -64,7 +64,7 @@ class JoeyPDO {
     public function getPizzaNameByNamepart($namepart) {
         $search = "%$namepart%";
         $stmt = $this->conn->prepare("SELECT PizzaID, Naam, Prijs
-            FROM pizzatest WHERE Naam LIKE ?");
+            FROM pizza WHERE Naam LIKE ?");
         $stmt->execute([$search]);
         
         $terugding = $stmt->fetchAll($this->MODE);
@@ -79,7 +79,7 @@ class JoeyPDO {
     }
     
     public function getRandomPizza() {
-        $sql = "SELECT pizzaid, naam, prijs, image FROM pizzatest ORDER BY RAND() LIMIT 1";
+        $sql = "SELECT pizzaid, naam, prijs, image FROM pizza ORDER BY RAND() LIMIT 1";
             
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();

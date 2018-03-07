@@ -6,3 +6,14 @@ Array wordt met een FOR lus uit elkaar gehaald en 1 voor een geformat met divs e
 Hoe moet het gedaan worden met  de prijzen want de prijs die er standaard staat is alleen voor medium
 
 Database staan nu 12 pizza's en er moeten er maar 4 worden weergegeven.
+
+
+SELECT
+    fullname,
+    cc.category
+FROM
+    `tabela` AS tt
+    JOIN category AS cc
+    ON tt.cat = cc.id
+WHERE
+    1

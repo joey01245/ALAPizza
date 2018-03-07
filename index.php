@@ -60,7 +60,7 @@
             <div class='col-md-4 col-sm-6 col-xs-12'>
                 <h4>Pizza van de dag</h4>
                 <h6 class='text-center'>De pizza van de dag is:</h6>
-                <?php echo $db->getRandomPizza()?>
+                <?php echo $db->getRandomPizza() ?>
             </div>
 
             <div class='col-md-4 col-sm-6 col-xs-12'>

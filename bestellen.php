@@ -83,8 +83,8 @@ function getVariantSelect($selname, $pid) {
                     <input type="text" class="form-control contactinput" placeholder="Adres" required>
                     <input type="text" class="form-control contactinput" placeholder="Woonplaats" required>
                     <input type="text" class="form-control contactinput" placeholder="Postcode" required>
-                    <input type="text" class="form-control contactinput" placeholder="E-Mail" required>
-                    <input type="text" class="form-control contactinput" placeholder="Telefoonnummer" required>
+                    <input type="email" class="form-control contactinput" placeholder="E-Mail" required>
+                    <input type="tel" class="form-control contactinput" placeholder="Telefoonnummer" required>
                 </div>
 
                 <div class='col-lg-12'>
@@ -110,7 +110,7 @@ function getVariantSelect($selname, $pid) {
                 
  try {
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $pdo->prepare("SELECT pizzaid, naam, image, prijs FROM pizzatest"); 
+                $stmt = $pdo->prepare("SELECT pizzaid, naam, image, prijs FROM pizza"); 
                 $stmt->execute();
 
      $getoond = false;
@@ -118,20 +118,20 @@ function getVariantSelect($selname, $pid) {
             while(list($pizzaID, $naam, $image,  $prijs) = $stmt->fetch(PDO::FETCH_NUM)) {
                 echo "<div id='pizza$pizzaID align-content-center'>
                 <div class='col-lg-12 mt-2'>$naam</div>
-                <div class='col-md-10'>";
-                if(!$getoond){
-                    echo "<img class='pizzaplaatje' src='data:image/jpeg;base64,".base64_encode( $image )."' height='150px' width='150px'>";
-//                    $getoond = true;
-                }
-                  echo "</div>
-                        <div class='col-md-10'>";
-                        echo getVariantSelect('joeyszoeklijst', $pizzaID);
-                       echo "</div>";
-                        
-                    echo "<div class='col-md-9 col-sm-3'>
-                    <label class='mb-0'>Hoeveelheid:</label>
-                    <input type='text' class='form-control mt-1' name='$pizzaID' required placeholder='0'>
-                   </div> 
+                    <div class='col-md-10'>";
+                    if(!$getoond){
+                        echo "<img class='pizzaplaatje' src='data:image/jpeg;base64,".base64_encode( $image )."' height='150px' width='150px'>";
+    //                    $getoond = true;
+                    }
+                      echo "</div>
+                            <div class='col-md-10'>";
+                            echo getVariantSelect('joeyszoeklijst', $pizzaID);
+                           echo "</div>";
+
+                        echo "<div class='col-md-9 col-sm-3'>
+                        <label class='mb-0'>Hoeveelheid:</label>
+                        <input type='number' class='form-control mt-1' name='$pizzaID' required placeholder='0'>
+                       </div> 
                    </div>";
                 }
 
